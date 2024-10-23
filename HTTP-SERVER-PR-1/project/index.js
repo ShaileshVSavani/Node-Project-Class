@@ -15,7 +15,7 @@ const PORT = 8090;
 
 
 const server = http.createServer((req, res) => {
-    if (req.url === '/') {
+    if (req.url === '/home') {
         fs.readFile('index.html', (err, data) => {
             res.end(data);
         });
