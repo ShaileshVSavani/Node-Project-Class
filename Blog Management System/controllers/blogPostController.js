@@ -12,7 +12,7 @@ const createBlogPost = async (req, res) => {
 
 const getAllBlogPosts = async (req, res) => {
     try {
-        const blogPosts = await BlogPost.find().populate("author", "username email");
+        const blogPosts = await BlogPost.find()
         res.json(blogPosts);
     } catch (err) {
         res.json({ error: err.message });
@@ -21,7 +21,7 @@ const getAllBlogPosts = async (req, res) => {
 
 const getBlogPostById = async (req, res) => {
     try {
-        const blogPost = await BlogPost.findById(req.params.id).populate("author", "username email");
+        const blogPost = await BlogPost.findById(req.params.id)
         if (!blogPost) return res.json({ error: "Blog post not found" });
         res.json(blogPost);
     } catch (err) {

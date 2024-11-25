@@ -12,7 +12,7 @@ const createComment = async (req, res) => {
 
 const getCommentsByBlogPost = async (req, res) => {
     try {
-        const comments = await Comment.find({ blogPost: req.params.blogPostId }).populate("author", "username");
+        const comments = await Comment.find({ blogPost: req.params.blogPostId })
         res..json(comments);
     } catch (err) {
         res.json({ error: err.message });
