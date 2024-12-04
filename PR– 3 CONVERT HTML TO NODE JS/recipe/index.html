@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All Recipes</title>
+    <script>
+        async function fetchRecipes() {
+            const response = await fetch('/recipe/all');
+            const recipes = await response.json();
+            const parent = document.getElementById('parent');
+
+            parent.innerHTML = recipes.map(recipe => `
+                <div>
+                    <h2>${recipe.name}</h2>
+                    <p>${recipe.description}</p>
+                    <img src="${recipe.imageUrl}" alt="${recipe.name}" width="300">
+                </div>
+            `).join('');
+        }
+    </script>
+</head>
+<body onload="fetchRecipes()">
+    <h1>All Recipes</h1>
+    <div id="parent"></div>
+</body>
+</html>
