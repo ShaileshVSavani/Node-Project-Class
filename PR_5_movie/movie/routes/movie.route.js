@@ -1,11 +1,13 @@
-const express = require('express');
-const { createMovie, updateMovie, deleteMovie, addRating, addComment } = require('../controllers/movie.controller');
-const router = express.Router();
+const {Router} = require('express');
+const { createMovie, updateMovie, deleteMovie, addRating, addComment, movieFilter } = require('../controllers/movie.controller');
+const checkAdmin = require('../middlewares/checkAdmin.middleware');
+const movieRouter = Router();
 
-router.post('/create', createMovie);
-router.patch('/update/:id', updateMovie);
-router.delete('/delete/:id', deleteMovie);
-router.patch('/rating/:id', addRating);
-router.patch('/comment/:id', addComment);
+movieRouter.post('/create', createMovie);
+movieRouter.patch('/update/:id', updateMovie);
+movieRouter.delete('/delete/:id', checkAdmin, deleteMovie);
+movieRouter.patch('/rating/:id', addRating);
+movieRouter.patch('/comment/:id', addComment);
+movieRouter.get('/filter',movieFilter) 
 
-module.exports = router;
+module.exports = movieRouter;
